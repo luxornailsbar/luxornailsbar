@@ -1,7 +1,10 @@
 name = "luxornailsbar"
-compatibility_date = "2026-27-02"
+compatibility_date = "2026-02-27"
 main = "./index.js"
 
 [site]
-
 bucket = "."
+
+[[routes]]
+pattern = "luxornailsbar.com"
+custom_domain = true
