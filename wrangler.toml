@@ -1,0 +1,6 @@
+name = "luxornailsbar"
+compatibility_date = "2026-02-27"
+main = "./index.js"
+
+[site]
+bucket = "."

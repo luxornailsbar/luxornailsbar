@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Services | Luxor Nails Bar</title>
+    <!-- Website Icon (Favicon) -->
+    <link rel="icon" type="image/x-icon" href="../images/iconlogo.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            padding-top: 80px;
+            background-color: #000000 !important;
+            color: #FFFFFF !important;
+        }
+
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                url('../images/hero-background.png') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card-full {
+            background: #111111;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #D4AF37;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card-full:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .service-icon-large {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #000000 !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .service-category {
+            background: #111111;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-header {
+            border-bottom: 2px solid #D4AF37;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: #FFFFFF !important;
+        }
+
+        .back-to-home {
+            color: #D4AF37 !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #FFFFFF !important;
+            text-decoration: underline;
+        }
+
+        .service-image-full {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-note {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #D4AF37;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.9rem;
+            color: #FFFFFF;
+        }
+
+        /* Override text colors */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #FFFFFF !important;
+        }
+
+        p,
+        li,
+        span,
+        small {
+            color: #CCCCCC !important;
+        }
+
+        .text-muted {
+            color: #999999 !important;
+        }
+
+        ul li {
+            color: #CCCCCC;
+            margin-bottom: 0.5rem;
+        }
+
+        ul li strong {
+            color: #FFFFFF;
+        }
+
+        /* Alert styling */
+        .alert-warning {
+            background-color: rgba(212, 175, 55, 0.1) !important;
+            border-color: #D4AF37 !important;
+            color: #FFFFFF !important;
+        }
+
+        /* CTA section */
+        .rounded[style*="background: linear-gradient"] {
+            background: #111111 !important;
+            border: 2px solid #D4AF37 !important;
+        }
+
+        /* Button styling */
+        .btn-outline-primary {
+            border-color: #D4AF37;
+            color: #D4AF37 !important;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #D4AF37;
+            color: #000000 !important;
+        }
+
+        .btn-outline-secondary {
+            border-color: #FFFFFF;
+            color: #FFFFFF !important;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #FFFFFF;
+            color: #000000 !important;
+        }
+
+        /* Navbar overrides */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #FFFFFF !important;
+        }
+
+        .nav-link.active {
+            color: #D4AF37 !important;
+        }
+
+        .navbar-toggler {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        .bg-white {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* Footer overrides */
+        .footer {
+            background-color: #000000 !important;
+            color: #FFFFFF !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            color: #FFFFFF !important;
+        }
+
+        .social-icons a {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+
+        .social-icons a:hover {
+            background-color: #D4AF37;
+            color: #000000;
+        }
+
+        hr {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .list-unstyled li {
+            color: #CCCCCC;
+        }
+
+        .footer a {
+            color: #CCCCCC;
+        }
+
+        .footer a:hover {
+            color: #D4AF37;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .service-header {
+                padding: 2rem 0;
+            }
+
+            .service-category {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/logo.png" alt="Luxor Nails Bar Logo" height="40" class="me-2">
+                Luxor Nails Bar
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/drinkmenu.html#menu">Drink Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#testimonials">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header with hero image background -->
+    <div class="service-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="display-4 fw-bold mb-3">Our Complete Service Menu</h1>
+                    <p class="lead mb-0">Discover our full range of premium beauty and wellness services</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="../index.html" class="back-to-home">
+                        <i class="bi bi-arrow-left me-2"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Services -->
+    <div class="container">
+        <!-- Nail Enhancements -->
+        <div class="service-category">
+            <div class="category-header">
+                <h2 class="section-title mb-0"><i class="bi bi-gem me-2" style="color: #D4AF37;"></i> Nail Enhancements
+                </h2>
+                <p class="text-muted mb-0">Premium nail enhancements for beautiful, long-lasting results</p>
+            </div>
+
+            <div class="row">
+                <!-- Dipping Powder -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>DIPPING Powder</h3>
+                        <p class="text-muted">A healthy alternative to Acrylic nails. Free of harsh chemicals,
+                            non-toxic, and odorless, no liquid.</p>
+                        <ul class="mt-3">
+                            <li><strong>Dipping Powder Application Only:</strong> $50 & Up<br><small>With The
+                                    Manicure</small></li>
+                            <li><strong>Ombre Dipping Powder:</strong> $62 & Up</li>
+                            <li><strong>Add Extension Tips or French Tips:</strong> $8 Extra</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Acrylic Powder -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>ACRYLIC Powder</h3>
+                        <p class="text-muted">Most durable form of nail enhancement and low maintenance. Your choice of
+                            a regular polish or UV gel polish with extra charge.</p>
+                        <ul class="mt-3">
+                            <li><strong>Acrylic Full Set:</strong> $47 & Up</li>
+                            <li><strong>Acrylic Fill In:</strong> $37 & Up</li>
+                            <li><strong>ADD GEL POLISH ON TOP:</strong> $15 More</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pink & White -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>PINK & WHITE</h3>
+                        <p class="text-muted">Classic French manicure style with pink and white acrylic enhancements.
+                        </p>
+                        <ul class="mt-3">
+                            <li><strong>PINK & WHITE Full Set:</strong> $70 & Up</li>
+                            <li><strong>PINK & WHITE Fill:</strong> $60 & Up</li>
+                            <li><strong>PINK Fill Only:</strong> $50 & Up</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Builder Gel -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>BUILDER GEL</h3>
+                        <p class="text-muted">Long-lasting gel manicure with a strong, durable finish.
+                        </p>
+                        <ul class="mt-3">
+                            <li><strong>BUILDER GEL Full Set:</strong> $70 & Up</li>
+                            <li><strong>BUILDER GEL Fill:</strong> $60 & Up</li>
+                            <li><strong>BUILDER GEL Fill Only:</strong> $50 & Up</li>
+                        </ul>
+                    </div>
+                </div>
+
+                    <!-- Gel X -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>GEL X</h3>
+                        <p class="text-muted">Gel X is a revolutionary nail enhancement system that uses soft gel extensions for a natural look and feel.
+                        </p>
+                        <ul class="mt-3">
+                            <li><strong>GEL X Full Set:</strong> $70 & Up</li>
+                            <li><strong>GEL X Fill:</strong> $60 & Up</li>
+                            <li><strong>GEL X Fill Only:</strong> $50 & Up</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nail Shape -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-scissors"></i>
+                        </div>
+                        <h3>Nail Shape</h3>
+                        <p class="text-muted">Choose your perfect nail shape to complement your style.</p>
+                        <ul class="mt-3">
+                            <li><strong>Standard Shapes:</strong> No Charge</li>
+                            <li><strong>Specialty Shapes:</strong> $5 Extra Charge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manicure -->
+        <div class="service-category">
+            <div class="category-header">
+                <h2 class="section-title mb-0"><i class="bi bi-brush me-2" style="color: #D4AF37;"></i> Manicure</h2>
+                <p class="text-muted mb-0">Luxurious hand care treatments</p>
+            </div>
+
+            <div class="row">
+                <!-- Spa Manicure -->
+                <div class="col-md-6 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-hand-index"></i>
+                        </div>
+                        <h3>Basic Manicures</h3>
+                        <p class="text-muted">Classic manicure treatments for beautiful, healthy hands.</p>
+                        <ul class="mt-3">
+                            <li><strong>Spa Manicure:</strong> $25<br><small>This regular service comes with nails
+                                    trimming, shaping, cuticle grooming, massages with lotion, and regular
+                                    polish.</small></li>
+                            <li><strong>Signature Manicure:</strong> $30<br><small>Inclusive of Spa manicure plus scrub
+                                    massage, hot towel wrap, lotion massage.</small></li>
+                            <li><strong>LUXOR Manicure:</strong> $37<br><small>Features Spa manicure plus scrub massage,
+                                    Mud Mask, Hot towel wrap, lotion massage, and regular polish.</small></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Premium Manicure -->
+                <div class="col-md-6 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <h3>Premium Manicures</h3>
+                        <p class="text-muted">Ultimate luxury treatments for the most indulgent experience.</p>
+                        <ul class="mt-3">
+                            <li><strong>The Ultimate LUXOR Spa Manicure:</strong> $55<br><small>Our top-notch package
+                                    consists of a Luxor spa manicure, hydrated paraffin, collagen cream infuse glove,
+                                    hot towel, luxury massage, and regular polish.</small></li>
+                            <li><strong>Gel Polish Add-on to Any Service:</strong> $15<br><small>*** Does not apply to
+                                    manicure</small></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gel Polish -->
+        <div class="service-category">
+            <div class="category-header">
+                <h2 class="section-title mb-0"><i class="bi bi-droplet me-2" style="color: #D4AF37;"></i> Gel Polish
+                </h2>
+                <p class="text-muted mb-0">Long-lasting, chip-resistant polish</p>
+            </div>
+
+            <div class="row">
+                <!-- Gel Polish Services -->
+                <div class="col-md-6 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+                        <h3>Gel Polish Services</h3>
+                        <p class="text-muted">Professional gel polish applications for long-lasting wear.</p>
+                        <ul class="mt-3">
+                            <li><strong>Gel Polish Manicure:</strong> $45<br><small>Include Spa manicure, and Polish
+                                    cure in LED light to make it last longer, and dry right away.</small></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Gel Polish Changes -->
+                <div class="col-md-6 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <h3>Gel Polish Changes</h3>
+                        <p class="text-muted">Quick and easy gel polish refresh.</p>
+                        <ul class="mt-3">
+                            <li><strong>On Hands w/o Manicure:</strong> $35</li>
+                            <li><strong>On Feet w/o Pedicure:</strong> $37</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pedicure -->
+        <!--<div class="service-category">
+            <div class="category-header">
+                <h2 class="section-title mb-0"><i class="bi bi-diamond me-2" style="color: #D4AF37;"></i> Pedicure</h2>
+                <p class="text-muted mb-0">Luxurious foot care treatments</p>
+                <div class="service-note">
+                    <strong>Note:</strong> ALL PEDICURE INCLUDED REGULAR POLISH<br>
+                    With Gel Polish + ($15) Extra
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Basic Pedicures -->
+        <!--<div class="col-md-6 mb-4">
+            <div class="service-card-full">
+                <div class="service-icon-large">
+                    <i class="bi bi-heart"></i>
+                </div>
+                <h3>Basic Pedicures</h3>
+                <p class="text-muted">Essential foot care for healthy, beautiful feet.</p>
+                <ul class="mt-3">
+                    <li><strong>Spa Pedicure:</strong> $37<br><small>This service incorporates nail trimming,
+                            shaping, and cuticle grooming massages with lotion, and hot towel.</small></li>
+                    <li><strong>Signature Pedicure:</strong> $44<br><small>Signature pedicures consist of nails
+                            trimming, shaping, cuticle grooming, and massages with scrub and hot towel.</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Premium Pedicures -->
+        <!--<div class="col-md-6 mb-4">
+            <div class="service-card-full">
+                <div class="service-icon-large">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <h3>Premium Pedicures</h3>
+                <p class="text-muted">Ultimate luxury treatments for the most indulgent foot care experience.
+                </p>
+                <ul class="mt-3">
+                    <li><strong>LUXOR Spa Pedicure:</strong> $55<br><small>The package comes with nails
+                            trimming, shaping, cuticle grooming massages with scrub (longer), mud mask, and hot
+                            towel.</small></li>
+                    <li><strong>Royal Hot Stone Pedicure:</strong> $70<br><small>Our luxury package entails
+                            nails trimming, shaping, cuticle grooming massages with scrub (longer), mud mask,
+                            hot towel and hot stone (warm smooth rocks massage), and hydrated paraffin.</small>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
+
+        <!-- Ultimate Pedicure -->
+        <!--<div class="col-md-12 mb-4">
+            <div class="service-card-full">
+                <div class="service-icon-large">
+                    <i class="bi bi-crown"></i>
+                </div>
+                <h3>The Ultimate LUXOR Pedicure</h3>
+                <div class="price-tag">$90</div>
+                <p class="text-muted mt-2">Our number one House Luxury package encompasses nail trimming,
+                    shaping, cuticle grooming, massages with scrub (longer), mud mask, hot towel, hot stone
+                    (warm smooth rocks massage), Hydrate paraffin, and Collagen cream-infuse socks.</p>
+            </div>
+        </div>
+    </div>
+    </div>-->
+
+        <!-- Price Note -->
+        <!--<div class="alert alert-warning text-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Please Note:</strong> Prices are subject to change without notice
+        </div>
+
+        <!-- Call to Action -->
+        <!--<div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-8 text-center">
+                <div class="p-5 rounded" style="background: #111111; border: 2px solid #D4AF37;">
+                    <h3 class="mb-3">Ready to Call Us Appointment?</h3>
+                    <p class="mb-4">Contact us today to schedule your beauty treatment or consultation.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="tel:+18595545454" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-telephone me-2"></i> Call Us
+                        </a>
+                        <a href="../index.html" class="btn btn-outline-secondary btn-lg">
+                            <i class="bi bi-house me-2"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+        <footer class="footer mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <!-- <img src="../images/logo-white.png" alt="Luxor Nails Bar" height="40" class="me-3"> -->
+                            <h3 class="footer-brand mb-0">Luxor Nails Bar</h3>
+                        </div>
+                        <p>Providing premium beauty services since 2020. Our mission is to enhance your natural beauty
+                            in a relaxing, luxurious environment.</p>
+                        <div class="social-icons mt-3">
+                            <a href="https://www.facebook.com/Luxor-Nails-Bar-at-the-Fountains-Palomar-104653148779038"
+                                class="me-3">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/luxornailsbar/">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h5>Contact Info</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-geo-alt me-2"></i>3901 Fountainblue Ln #170, Lexington, KY 40513
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-telephone me-2"></i>+18595545454
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-envelope me-2"></i>luxnailsbarlexington@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5>Business Hours</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">Monday - Friday: 10:00 AM - 8:00 PM</li>
+                            <li class="mb-2">Saturday: 10:00 AM - 7:00 PM</li>
+                            <li class="mb-2">Sunday: 12:00 PM - 6:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2020 Luxor Nails Bar. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="me-3">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+    </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/loading.js"></script>
+    <script src="../scripts/cursor.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <!-- Anti DevTools Script -->
+
+    <script>
+        (function () {
+            'use strict';
+
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+            document.addEventListener('keydown', function (e) {
+                // F12
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Ctrl+Shift+I (DevTools)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Ctrl+Shift+J (Console)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Ctrl+Shift+C (Inspect Element)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Ctrl+U (View Source)
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Cmd+Option+I (Mac DevTools)
+                if (e.metaKey && e.altKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Cmd+Option+J (Mac Console)
+                if (e.metaKey && e.altKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Cmd+Option+C (Mac Inspect)
+                if (e.metaKey && e.altKey && e.keyCode === 67) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Detect if DevTools is open by checking window size differences
+            const devtoolsChecker = setInterval(function () {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+                if (widthThreshold || heightThreshold) {
+                    // DevTools likely open
+                    console.warn('Developer tools detected');
+                }
+            }, 1000);
+
+            // Clear console periodically
+            setInterval(function () {
+                console.clear();
+            }, 2000);
+
+            // Disable console functions
+            console.log = function () { };
+            console.warn = function () { };
+            console.error = function () { };
+            console.info = function () { };
+            console.debug = function () { };
+        })();
+    </script>
+</body>
+
+</html>

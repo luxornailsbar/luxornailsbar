@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxor Nails Bar</title>
+    <!-- Website Icon (Favicon) -->
+    <link rel="icon" type="image/x-icon" href="../images/iconlogo.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Enter Website Overlay Styles */
+        .enter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a160c 0%, #000000 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .enter-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .enter-logo {
+            margin-bottom: 2rem;
+        }
+
+        .enter-logo img {
+            width: 150px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .enter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .enter-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-enter-site {
+            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(255, 208, 0, 0.3);
+        }
+
+        .btn-enter-site:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(110, 90, 21, 0.4);
+        }
+
+        .btn-enter-site i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-enter-site:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Hero Section with Background Image */
+        .hero-section {
+            position: relative;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('../images/hero-background.png') center/cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 87vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            border: none;
+            color: white;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-buttons .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .hero-buttons .btn-outline-light {
+            border: 2px solid white;
+            background: transparent;
+        }
+
+        .hero-buttons .btn-outline-light:hover {
+            background: white;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* Additional styles for images */
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .menu-download-card {
+            border: 2px dashed #D4AF37;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
+        }
+
+        .menu-preview {
+            max-width: 400px;
+            margin: 0 auto 20px;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Style for View All button */
+        .btn-view-all {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-view-all:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 196, 0, 0.3);
+            color: white;
+        }
+
+        /* Service card styling */
+        .service-card {
+            padding: 0;
+            border: none;
+            background: transparent;
+        }
+
+        .service-image {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgb(255, 255, 255);
+            margin-bottom: 1rem;
+        }
+
+        /* Notify only */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Change star color to yellow */
+        .rating i {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-right: 3px;
+        }
+
+        .rating i.bi-star-fill {
+            color: #FFD700;
+        }
+
+        .rating i.bi-star-half {
+            color: #FFD700;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a160c 0%, #000000 100%);
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .loading-logo {
+            margin-bottom: 2rem;
+        }
+
+        .loading-logo img {
+            width: 120px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #B8860B, #D4AF37);
+            transition: width 0.3s ease;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .loading-dot {
+            width: 8px;
+            height: 8px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-text {
+                font-size: 1.2rem;
+                line-height: 1.6;
+            }
+
+            .hero-buttons .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Enter Website Overlay -->
+    <div class="enter-overlay" id="enterOverlay">
+        <div class="enter-container">
+            <div class="enter-logo">
+                <img src="images/logo.png" alt="Luxor Nails Bar" class="brand-logo">
+            </div>
+            <h1 class="enter-title">Welcome to Luxor Nails Bar</h1>
+            <p class="enter-text">Experience premium beauty services in a luxurious setting. Step into our serene oasis
+                where elegance meets innovation, and let us take you on a journey of beauty and relaxation.</p>
+            <button class="btn-enter-site" id="enterButton">
+                Enter Site <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <img src="images/logo.png" alt="Luxor Nails Bar" class="brand-logo">
+            </div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">PREPARING YOUR BEAUTY EXPERIENCE</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loadingProgress"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Luxor Nails Bar Logo" class="brand-logo me-2">
+                Luxor Nails Bar
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/drinkmenu.html#drinkmenu">Drink Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item d-lg-none" id="notification-bell-item">
+                        <a class="nav-link" href="#" id="notification-bell">
+                            <i class="bi bi-bell"></i>
+                            <span class="notification-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Centered Content -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Luxor Nails Bar</h1>
+            <p class="hero-text">We provide premium salon services with expert stylists, quality products, and a
+                relaxing atmosphere for your complete beauty transformation.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="images/salon-interior.png" class="img-fluid rounded shadow" alt="Salon Interior">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Luxor Nails Bar</h2>
+                    <p><b>Welcome to Luxor Nails Bar, the epitome of opulence and indulgence in the world of nail care.
+
+                            Our luxurious salon caters to discerning individuals seeking an unforgettable pampering
+                            experience. Step into our serene oasis, where elegance meets innovation, and let us take you
+                            on a journey of beauty and relaxation.
+
+                            We offer a full range of services from hand to toe, for adults and children alike. Enjoy our
+                            complimentary drinks as you unwind in our care.
+
+                            Come and discover the pinnacle of luxury nail care at Luxor. Rejuvenate, unwind, and let us
+                            pamper you with our exquisite services. You will be left with a lasting impression of
+                            beauty, elegance, and unmatched indulgence.</b></p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="feature-item">
+                                <i class="bi bi-award"></i>
+                                <h5>Certified Experts</h5>
+                                <p>All our stylists are certified with 5+ years of experience.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-item">
+                                <i class="bi bi-flower1"></i>
+                                <h5>Natural Products</h5>
+                                <p>We use only premium, natural and cruelty-free products.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-4">
+                <img src="images/services-header.png" alt="Our Premium Services" class="img-fluid rounded"
+                    style="max-height: 150px;">
+            </div>
+
+            <h2 class="section-title text-center">Our Premium Services</h2>
+            <p class="text-center mb-5">We offer a wide range of beauty and wellness services to meet
+                all your needs.
+            </p>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/pedicure-service.png" alt="Pedicure Service">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/makeup-service.png" alt="Makeup Artistry">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/nail-care.png" alt="Nail Care">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/facial-service.png" alt="Facials & Skincare">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/waxing-service.png" alt="Waxing & Threading">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <div class="service-image">
+                            <img src="images/spa-service.png" alt="Spa Treatments">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <a href="../pages/services-full.html" class="btn btn-view-all">
+                        <i class="bi bi-eye me-2"></i> View All Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Clients Say</h2>
+            <p class="text-center mb-5">Don't just take our word for it - hear from our satisfied
+                customers.</p>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h5 class="mb-0">MacKenzie H.</h5>
+                                <small>Regular Client for 2 years</small>
+                            </div>
+                        </div>
+                        <p>"I have been going to Luxor for about 2 years now and I absolutely love everything about
+                            them! I normally see Hong, but I've seen a handful of others for my nails. Most recently I
+                            saw Lee who took such good care of me and ensured my nails were PERFECT before letting me
+                            leave - even if that meant restarting the design a couple times.
+                            It's clear I don't give the easiest designs, but these techs are never scared of a
+                            challenge! Management is amazing, everyone is so nice, and I leave every time so happy with
+                            my nails and my experience.
+
+                            The pedicures are so relaxing, especially while grabbing a drink (shoutout to the frozen
+                            strawberry margarita - SO GOOD)
+
+                            The facility is so clean, chic, and comfortable. If you go during Christmas time, their
+                            decor is amazing!
+
+                            I truly think I could go on and on about Luxor Nails. All this to say, GO! You will find
+                            your new nail place and never look back!"</p>
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h5 class="mb-0">Emma H.</h5>
+                                <small>3 months Client</small>
+                            </div>
+                        </div>
+                        <p>"I decided to try Luxor Nails Bar because I wanted to find a new nail salon at college that
+                            wouldn't break the bank. This place exceeded my expectations. It is super clean and has a
+                            calming atmosphere, which made the experience very relaxing. The nail techs were friendly
+                            and took their time to make sure my nails looked great. I went with an acrylic fill and I am
+                            very impressed with how they have lasted. This was perfect because I didn't have to worry
+                            about fixing a broken nail with my busy schedule. The prices were reasonable, especially
+                            considering the quality of service I got. It's a nice spot if you want to treat yourself or
+                            just to get a monthly manicure! This business provides a very quick and efficient service as
+                            well, all while offering me water and making sure I was comfortable. I will definitely go
+                            back next time I need my nails done!"</p>
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <h5 class="mb-0">Aundria F.</h5>
+                                <small>Bridal Client</small>
+                            </div>
+                        </div>
+                        <p>"Easy communication to get a same day appointment set up! Excellent acrylic work by Kelly and
+                            the pedicure gals were awesome. I'd like to shout out the woman at the desk that set up my
+                            appt. She helped make it the best experience for a first timer :D"</p>
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="images/logo-white.png" alt="Luxor Nails Bar" class="brand-logo me-3">
+                        <h3 class="footer-brand mb-0">Luxor Nails Bar</h3>
+                    </div>
+                    <p>Providing premium beauty services since 2020. Our mission is to enhance your
+                        natural beauty in a
+                        relaxing, luxurious environment.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/Luxor-Nails-Bar-at-the-Fountains-Palomar-104653148779038"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/luxornailsbar/"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>3901 Fountainblue Ln #170, Lexington, KY
+                            40513
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-telephone me-2"></i>+18595545454
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope me-2"></i>luxnailsbarlexington@gmail.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Business Hours</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Monday - Friday: 10:00 AM - 8:00 PM</li>
+                        <li class="mb-2">Saturday: 10:00 AM - 7:00 PM</li>
+                        <li class="mb-2">Sunday: 12:00 AM - 6:00 PM</li>
+                    </ul>
+                    <div class="mt-3 mb-3">
+                        <img src="images/footer-badge.png" alt="Award Winning Salon" class="img-fluid"
+                            style="max-height: 80px;">
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2020 Luxor Nails Bar. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="me-3">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/scripts.js"></script>
+    <script src="scripts/cursor.js"></script>
+    <script src="scripts/loading.js"></script>
+    <script src="scripts/notification.js"></script>
+
+    <script>
+        // Enter Site Button Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const enterOverlay = document.getElementById('enterOverlay');
+            const enterButton = document.getElementById('enterButton');
+            const loadingScreen = document.getElementById('loadingScreen');
+
+            const hasEntered = sessionStorage.getItem('hasEnteredSite');
+
+            if (hasEntered) {
+                enterOverlay.style.display = 'none';
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '1';
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 2000);
+                }, 100);
+            } else {
+                enterOverlay.style.display = 'flex';
+                loadingScreen.style.display = 'none';
+            }
+
+            if (enterButton) {
+                enterButton.addEventListener('click', function () {
+                    sessionStorage.setItem('hasEnteredSite', 'true');
+                    enterOverlay.style.opacity = '0';
+
+                    setTimeout(() => {
+                        enterOverlay.style.display = 'none';
+                        loadingScreen.style.display = 'flex';
+                        loadingScreen.style.opacity = '1';
+
+                        setTimeout(() => {
+                            loadingScreen.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 500);
+                        }, 2000);
+                    }, 500);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' && enterOverlay.style.display === 'flex') {
+                    enterButton.click();
+                }
+            });
+        });
+
+        (function () {
+            'use strict';
+
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode === 123 ||
+                    (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) ||
+                    (e.ctrlKey && e.keyCode === 85) ||
+                    (e.metaKey && e.altKey && [73, 74, 67].includes(e.keyCode))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            const devtoolsChecker = setInterval(function () {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+                if (widthThreshold || heightThreshold) {
+                    // DevTools detected - optional action
+                }
+            }, 1000);
+
+            setInterval(function () {
+                console.clear();
+            }, 2000);
+
+            console.log = console.warn = console.error = console.info = console.debug = function () { };
+        })();
+    </script>
+</body>
+
+</html>
