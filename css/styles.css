@@ -240,8 +240,8 @@ div {
 }*/
 
 .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-    
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    background-image: url('../images/hero-background.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -256,7 +256,15 @@ div {
     width: 100%;
 }
 
-/* Mobile fix */
+/* For larger tablets and small desktops */
+@media (max-width: 1200px) {
+    .hero-section {
+        background-position: center 30%;
+        background-size: cover;
+    }
+}
+
+/* For iPads and tablets in portrait */
 @media (max-width: 768px) {
     .hero-section {
         background-position: 30% center;
@@ -266,6 +274,7 @@ div {
     }
 }
 
+/* For mobile phones in portrait */
 @media (max-width: 576px) {
     .hero-section {
         background-position: 25% center;
@@ -273,9 +282,51 @@ div {
         min-height: 60vh;
         padding: 100px 0;
     }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
 }
 
+/* For very small mobile devices */
+@media (max-width: 375px) {
+    .hero-section {
+        background-position: 20% center;
+        background-size: cover;
+        min-height: 55vh;
+        padding: 80px 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+    }
+}
 
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        background-position: center 40%;
+        background-size: cover;
+        min-height: 120vh;
+        padding: 60px 0;
+    }
+}
+
+/* For very large screens where the 2048x1536 image fits perfectly */
+@media (min-width: 2048px) {
+    .hero-section {
+        background-size: 100% auto;
+    }
+}
 
 
 
