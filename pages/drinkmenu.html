@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +11,55 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ===== CURSOR CUSTOMIZATION (identical to contact page) ===== */
+        * {
+            cursor: none !important;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.15);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+            z-index: 99999;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #D4AF37;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.7;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            z-index: 99998;
+            box-shadow: 0 0 12px #D4AF37;
+        }
+
+        .custom-cursor.hover {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(212, 175, 55, 0.25);
+            border-color: #fff;
+            box-shadow: 0 0 30px #D4AF37;
+            transition: all 0.15s ease;
+        }
+
+        .custom-cursor.hidden {
+            opacity: 0;
+        }
+
         /* ------- GLOBAL STYLES – PHOTO BACKGROUND, WHITE TEXT, GOLD ACCENTS ------- */
         * {
             margin: 0;
@@ -30,6 +74,7 @@
             color: #ffffff;
             line-height: 1.6;
             position: relative;
+            padding-top: 76px; /* Add padding for fixed navbar */
         }
 
         /* Dark overlay over the background image – ensures text readability */
@@ -60,8 +105,11 @@
         .brand-logo {
             height: 50px;
             width: auto;
-            filter: brightness(0) invert(1);
-            /* white logo */
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
         }
 
         /* ----- ENTER OVERLAY (unchanged) ----- */
@@ -150,6 +198,7 @@
         .loading-logo img {
             width: 120px;
             height: auto;
+            animation: pulse 2s infinite;
         }
 
         .loading-spinner {
@@ -163,13 +212,13 @@
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-            100% {
-                transform: rotate(360deg);
-            }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
 
         .loading-text {
@@ -178,35 +227,120 @@
             font-size: 1.2rem;
             letter-spacing: 3px;
             margin-top: 20px;
+            animation: fadeInOut 2s infinite;
         }
 
-        /* ----- NAVIGATION – semi-transparent black to let photo show through ----- */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #f5e6b3);
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* ===== UPDATED NAVBAR – SAME AS CONTACT PAGE ===== */
         .navbar {
-            background: rgba(0, 0, 0, 0.85) !important;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.95) !important;
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            z-index: 9997 !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar.navbar-scrolled {
+            padding: 8px 0;
+            background-color: rgba(0, 0, 0, 0.98) !important;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
         }
 
         .navbar-brand {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
             color: #ffffff !important;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
         }
 
-        .navbar-brand img {
-            filter: brightness(0) invert(1);
+        .navbar-brand:hover {
+            color: #D4AF37 !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
         }
 
         .nav-link {
             color: #ffffff !important;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
-            transition: color 0.2s ease;
+            margin: 0 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 30px;
+            height: 2px;
+            background-color: #D4AF37;
+            transition: transform 0.3s ease;
         }
 
         .nav-link:hover {
             color: #D4AF37 !important;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
         }
 
         .nav-link.active {
@@ -214,18 +348,39 @@
             font-weight: 600;
         }
 
+        .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .navbar-toggler {
+            border: 1px solid #D4AF37;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
         .navbar-toggler-icon {
             filter: invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover .navbar-toggler-icon {
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
         }
 
         /* ----- HERO – transparent background, photo shows through ----- */
         .drink-hero {
             background: transparent;
             padding: 130px 0 50px;
-            margin-top: 76px;
+            margin-top: 0; /* Remove margin since we have body padding */
             text-align: center;
             border-bottom: 1px solid rgba(212, 175, 55, 0.5);
             text-shadow: 2px 2px 8px #000000;
+            animation: fadeInUp 1s ease;
         }
 
         .drink-hero h1 {
@@ -247,6 +402,17 @@
             text-shadow: 2px 2px 5px black;
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ----- MAIN MENU – semi-transparent dark cards so photo background is visible but text readable ----- */
         .menu-section {
             margin-bottom: 4rem;
@@ -256,6 +422,14 @@
             padding: 2rem 2rem 1.5rem;
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
+        }
+
+        .menu-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         .category-title {
@@ -276,6 +450,11 @@
             margin-right: 12px;
             color: #D4AF37;
             font-size: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-title:hover i {
+            transform: rotate(10deg) scale(1.1);
         }
 
         /* drink item row – clean, with subtle border */
@@ -285,11 +464,15 @@
             align-items: baseline;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
             padding: 0.7rem 0;
-            transition: all 0.1s;
+            transition: all 0.3s ease;
         }
 
         .drink-item:hover {
             border-bottom-color: #D4AF37;
+            transform: translateX(10px);
+            background: rgba(212, 175, 55, 0.05);
+            padding-left: 10px;
+            border-radius: 8px;
         }
 
         .drink-name {
@@ -307,6 +490,11 @@
         .drink-name strong {
             font-weight: 700;
             color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .drink-item:hover .drink-name strong {
+            color: #D4AF37;
         }
 
         .drink-composition {
@@ -326,9 +514,15 @@
             margin-left: 15px;
             letter-spacing: 1px;
             text-shadow: 1px 1px 3px black;
+            transition: all 0.3s ease;
         }
 
-        /* bottle list – glassmorphism style */
+        .drink-item:hover .drink-price {
+            transform: scale(1.1);
+            color: #f5d742;
+        }
+
+        /* bottle / beer / shot styling – glassmorphism style */
         .bottle-grid {
             display: flex;
             flex-wrap: wrap;
@@ -346,13 +540,14 @@
             align-items: center;
             justify-content: space-between;
             flex: 1 1 200px;
-            transition: 0.2s;
+            transition: all 0.3s ease;
         }
 
         .bottle-item:hover {
             border-color: #D4AF37;
             background: rgba(30, 30, 30, 0.8);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px) scale(1.02);
         }
 
         .bottle-name {
@@ -367,6 +562,12 @@
             font-weight: 700;
             color: #D4AF37;
             font-family: 'Playfair Display', serif;
+            transition: all 0.3s ease;
+        }
+
+        .bottle-item:hover .bottle-price {
+            transform: scale(1.1);
+            color: #f5d742;
         }
 
         /* wine note / footer style – glass effect */
@@ -380,6 +581,14 @@
             font-size: 1.1rem;
             border-radius: 8px 30px 30px 8px;
             border: 1px solid rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .menu-footer-note:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         /* footer – semi-transparent to match */
@@ -395,13 +604,38 @@
         .footer a {
             color: #dddddd;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .footer a:hover {
             color: #D4AF37;
+            transform: translateX(5px);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #D4AF37 !important;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .social-icons a:hover i {
+            color: #D4AF37 !important;
         }
 
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
             .drink-hero h1 {
                 font-size: 2.8rem;
                 letter-spacing: 6px;
@@ -426,15 +660,24 @@
 
         .bi {
             color: #D4AF37;
+            transition: all 0.3s ease;
         }
 
         .text-gold {
             color: #D4AF37 !important;
         }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Custom Cursor Elements (identical to contact page) -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
 
     <!-- ENTER OVERLAY -->
     <div class="enter-overlay" id="enterOverlay">
@@ -470,14 +713,14 @@
         </div>
     </div>
 
-    <!-- NAVIGATION – with Home, About, Drink Menu (active), Contact -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- NAVIGATION – with Home, About, Drink Menu (active), Contact – SAME AS CONTACT PAGE -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
-                <img src="../images/logo.png" alt="Luxor Nails Bar" class="brand-logo me-2">
+                <img src="../images/logo.png" alt="Luxor Nails Bar" class="me-2" style="height: 40px;">
                 Luxor Nails Bar
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -487,6 +730,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="drinkmenu.html">Drink Menu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -507,140 +753,137 @@
     <!-- MAIN DRINK MENU CONTENT – with photo background visible through semi-transparent panels -->
     <div class="container my-5 pt-3">
 
-        <!-- ======== WHITE WINE SECTION ======== -->
+        <!-- ======== WHITE WINE SECTION (from image 1) ======== -->
         <div class="menu-section">
-            <h2 class="category-title"><i class="bi bi-wine"></i> White Wine</h2>
+            <h2 class="category-title"><i class="bi bi-wine"></i> White Wine <span class="fs-4" style="color: #D4AF37;">$8</span></h2>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Pinot Noir</strong><span class="drink-composition">with Collera
-                                Pinot Gris Blanc</span></span>
-                        <span class="drink-price">$12</span>
+                        <span class="drink-name"><strong>Pinot Grigio</strong> <span class="drink-composition">Josh Cellars Pinot Grigio California</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Chardonnay</strong><span class="drink-composition">with
-                                Gewürztraminer, Sauvignon Blanc, Cabernet Franc</span></span>
-                        <span class="drink-price">$14</span>
+                        <span class="drink-name"><strong>Chardonnay</strong> <span class="drink-composition">Mer Soleil Chardonnay Reserve Santa Lucia Highland 2020</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Gewürztraminer Blanc</strong><span
-                                class="drink-composition">with Gewürztraminer Blanc & Gewürztraminer Blanc</span></span>
-                        <span class="drink-price">$13</span>
+                        <span class="drink-name"><strong>Sauvignon Blanc</strong> <span class="drink-composition">Kim Crawford Sauvignon Blanc Marlborough 2022</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Rosé</strong><span class="drink-composition">with Riesling,
-                                Gewürztraminer, Pinot Noir</span></span>
-                        <span class="drink-price">$13</span>
+                        <span class="drink-name"><strong>Rosé</strong> <span class="drink-composition">Chandon Brut Rosé California</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Rosé</strong><span class="drink-composition">with Riesling,
-                                Gewürztraminer, Pinot Noir</span></span>
-                        <span class="drink-price">$13</span>
+                        <span class="drink-name"><strong>Prosecco</strong> <span class="drink-composition">Ruffino Prosecco</span></span>
+                        <span class="drink-price">$8</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="drink-name"><strong>Moscato</strong> <span class="drink-composition">Ruffino Moscato D’asti</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ======== RED WINE SECTION ======== -->
+        <!-- ======== RED WINE SECTION (from image 1) ======== -->
         <div class="menu-section">
-            <h2 class="category-title"><i class="bi bi-wine"></i> Red Wine</h2>
+            <h2 class="category-title"><i class="bi bi-wine"></i> Red Wine <span class="fs-4" style="color: #D4AF37;">$8</span></h2>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Cabernet</strong><span class="drink-composition">with Collera
-                                Carmenère, Sauvignon Blanc</span></span>
-                        <span class="drink-price">$15</span>
+                        <span class="drink-name"><strong>Cabernet</strong> <span class="drink-composition">Josh Cellars Cabernet Sauvignon California</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Merlot</strong><span class="drink-composition">with Merlot,
-                                Cabernet Sauvignon, Merlot</span></span>
-                        <span class="drink-price">$14</span>
+                        <span class="drink-name"><strong>Pinot Noir</strong> <span class="drink-composition">Mer Soleil Chardonnay Reserve Santa Lucia Highland 2020</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Double Barrel</strong><span class="drink-composition">with
-                                Cabernet Sauvignon, Merlot, Cabernet Franc</span></span>
-                        <span class="drink-price">$18</span>
+                        <span class="drink-name"><strong>Merlot</strong> <span class="drink-composition">Chateau Ste Michelle Merlot Columbia Valley 2018</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="drink-item">
-                        <span class="drink-name"><strong>Sèrra</strong><span class="drink-composition">with Merlot and
-                                Cabernet Franc</span></span>
-                        <span class="drink-price">$16</span>
+                        <span class="drink-name"><strong>Double Barrel</strong> <span class="drink-composition">Jacob’s Creek Shiraz Double Barrel Australia</span></span>
+                        <span class="drink-price">$8</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="drink-name"><strong>Sangria</strong> <span class="drink-composition">Red wine Sangria</span></span>
+                        <span class="drink-price">$8</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ======== COCKTAIL DRINK SECTION ======== -->
+        <!-- ======== COCKTAIL DRINK SECTION (from image 2) ======== -->
         <div class="menu-section">
-            <h2 class="category-title"><i class="bi bi-cup-hot"></i> Cocktail Drink</h2>
+            <h2 class="category-title"><i class="bi bi-cup-hot"></i> Cocktail Drink <span class="fs-4" style="color: #D4AF37;">$7</span></h2>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="drink-item"><span class="drink-name"><strong>Mose</strong> <span
-                                class="drink-composition">Orange juice, orange liqueur</span></span><span
-                            class="drink-price">$11</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Strawberry Margarita</strong> <span
-                                class="drink-composition">Frozen or On Ice – mango juice, lime juice</span></span><span
-                            class="drink-price">$13</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Classico Margarita</strong> <span
-                                class="drink-composition">Lime wedge, tequila, triple sec</span></span><span
-                            class="drink-price">$12</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Pine Colada</strong> <span
-                                class="drink-composition">Coconut rum, pineapple juice, coconut cream
-                                (frozen)</span></span><span class="drink-price">$12</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Kia Tai</strong> <span
-                                class="drink-composition">Caramel sauce, fresh lime, syrup, ice</span></span><span
-                            class="drink-price">$11</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Icaro Brox Martini</strong> <span
-                                class="drink-composition">Screwdriver, lime, cranberry juice, simple
-                                syrup</span></span><span class="drink-price">$14</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Long Island Tea</strong> <span
-                                class="drink-composition">Vanilla, caramel, tea, sugar, ice</span></span><span
-                            class="drink-price">$14</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Mimosa</strong> <span class="drink-composition">Orange Juice or Cranberry Juice</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Strawberry Margarita</strong> <span class="drink-composition">Frozen or On ICE – Strawberry, tequila, lime juice, orange liqueur, sweetener</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Classic Margarita</strong> <span class="drink-composition">Lime wedge, salt, tequila, fresh juice</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Piña Colada</strong> <span class="drink-composition">Frozen – Orange-pineapple juice, tequila, cream coconut</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Mai Tai</strong> <span class="drink-composition">Rum, Orange curaçao, fresh lime juice, syrup</span></span><span class="drink-price">$7</span></div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="drink-item"><span class="drink-name"><strong>Fy My Martini</strong> <span
-                                class="drink-composition">Vodka, cranberry, lemon, ice</span></span><span
-                            class="drink-price">$13</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Vodka Lonic Water</strong> <span
-                                class="drink-composition">Vodka, lime juice, tonic water, lime wedge</span></span><span
-                            class="drink-price">$10</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Screwdriver Cocktail</strong> <span
-                                class="drink-composition">Cranberry juice, red wine</span></span><span
-                            class="drink-price">$11</span></div>
-                    <div class="drink-item"><span class="drink-name"><strong>Tecula Sunrise</strong> <span
-                                class="drink-composition">Cranberry juice, lemon, maraschino cherry,
-                                ice</span></span><span class="drink-price">$12</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Lemon Drop Martini</strong> <span class="drink-composition">Vodka, Lemon juice, Orange Liqueur, simple syrup</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Long Island Tea</strong> <span class="drink-composition">Vodka, Rum, Gin, Tequila, Triple Sec, sour mix</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Dirty Martini</strong> <span class="drink-composition">Vodka or Gin, Vermouth, Olives, ice</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Vodka Tonic Water</strong> <span class="drink-composition">Vodka, lime juice, tonic water, lime wedge</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Screwdriver Cocktail</strong> <span class="drink-composition">Orange juice and Vodka</span></span><span class="drink-price">$7</span></div>
+                    <div class="drink-item"><span class="drink-name"><strong>Tequila Sunrise</strong> <span class="drink-composition">Grenadine, Tequila, Maraschino cherry and ice.</span></span><span class="drink-price">$7</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- ======== BOTTLE / SHOT SPECIALS ======== -->
+        <!-- ======== BEER $4 / SHOT $5 SECTION ======== -->
         <div class="menu-section">
-            <h2 class="category-title"><i class="bi bi-bottle"></i> Bottle & Whiskey</h2>
+            <h2 class="category-title"><i class="bi bi-bottle"></i> Beer <span class="fs-4" style="color: #D4AF37;">$4</span> &nbsp; SHOT <span class="fs-4" style="color: #D4AF37;">$5</span></h2>
             <div class="bottle-grid">
-                <div class="bottle-item">
-                    <span class="bottle-name">🥃 Im Parma Feliz, Barolo Whiskey</span>
-                    <span class="bottle-price">$1 <span style="font-size: 0.9rem; color: #ddd;">SHOT</span></span>
-                </div>
-                <div class="bottle-item">
-                    <span class="bottle-name">Jack Daniel's Tennessee Whiskey</span>
-                    <span class="bottle-price">$5</span>
-                </div>
-                <div class="bottle-item">
-                    <span class="bottle-name">Garnet Agave</span>
-                    <span class="bottle-price">$2</span>
-                </div>
+                <div class="bottle-item"><span class="bottle-name">Budweiser</span><span class="bottle-price">$4</span></div>
+                <div class="bottle-item"><span class="bottle-name">Bud Light</span><span class="bottle-price">$4</span></div>
+                <div class="bottle-item"><span class="bottle-name">Heineken</span><span class="bottle-price">$4</span></div>
+                <div class="bottle-item"><span class="bottle-name">Corona</span><span class="bottle-price">$4</span></div>
+                <div class="bottle-item"><span class="bottle-name">Miller Lite</span><span class="bottle-price">$4</span></div>
+                <div class="bottle-item"><span class="bottle-name">West Sixth Brewing</span><span class="bottle-price">$4</span></div>
             </div>
-            <div class="mt-3 fst-italic" style="color: #D4AF37;">
-                <i class="bi bi-star-fill"></i> Ask about our weekly whiskey flights
+            <div class="bottle-grid mt-3">
+                <div class="bottle-item"><span class="bottle-name">Jim Beam (KY Bourbon)</span><span class="bottle-price">$5</span></div>
+                <div class="bottle-item"><span class="bottle-name">Jack Daniel’s Tennessee</span><span class="bottle-price">$5</span></div>
+                <div class="bottle-item"><span class="bottle-name">Patron Tequila</span><span class="bottle-price">$5</span></div>
             </div>
         </div>
 
-        <!-- elegant footer note -->
+        <!-- ======== SOFT DRINK & PATRON (from image 2) ======== -->
+        <div class="menu-section">
+            <h2 class="category-title"><i class="bi bi-cup"></i> Soft Drink <span class="fs-4" style="color: #D4AF37;">$2</span> &nbsp; Patron Tequila</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="drink-item">
+                        <span class="drink-name"><strong>Coke</strong></span>
+                        <span class="drink-price">$2</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="drink-name"><strong>Sprite</strong></span>
+                        <span class="drink-price">$2</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="drink-name"><strong>Diet Coke</strong></span>
+                        <span class="drink-price">$2</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mt-3" style="color: #D4AF37; font-size: 1.5rem;"><i class="bi bi-star-fill"></i> Premium Patron Tequila <span class="badge bg-dark">$5/shot</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- elegant footer note (wine with pedicure) -->
         <div class="menu-footer-note">
             <i class="bi bi-wine-bottle fs-3 me-2" style="color: #D4AF37;"></i>
             <span class="fw-bold">A GLASS OF WINE IS INCLUDED WITH EVERY PEDICURE SERVICE (21+)</span>
@@ -655,9 +898,9 @@
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="../images/logo-white.png" alt="Luxor Nails Bar" class="brand-logo me-3"
-                            style="filter: none;">
-                        <h3 class="footer-brand mb-0 text-white">Luxor Nails Bar</h3>
+                        <img src="../images/logo-white.png" alt="Luxor Nails Bar" class="me-3"
+                            style="height: 40px; filter: brightness(0) invert(1);">
+                        <h3 class="footer-brand mb-0">Luxor Nails Bar</h3>
                     </div>
                     <p style="color: #ddd;">Providing premium beauty services since 2020. Our mission is to enhance your
                         natural beauty in a relaxing, luxurious environment.</p>
@@ -667,25 +910,20 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="text-white">Contact Info</h5>
+                    <h5 class="text-white mb-3">Contact Info</h5>
                     <ul class="list-unstyled" style="color: #ddd;">
-                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>3901 Fountainblue Ln #170, Lexington, KY
-                            40513</li>
-                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>+18595545454</li>
-                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>luxnailsbarlexington@gmail.com</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2" style="color: #D4AF37;"></i>3901 Fountainblue Ln #170, Lexington, KY 40513</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color: #D4AF37;"></i>+18595545454</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2" style="color: #D4AF37;"></i>luxnailsbarlexington@gmail.com</li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
-                    <h5 class="text-white">Business Hours</h5>
+                    <h5 class="text-white mb-3">Business Hours</h5>
                     <ul class="list-unstyled" style="color: #ddd;">
-                        <li class="mb-2">Monday - Friday: 10:00 AM - 8:00 PM</li>
-                        <li class="mb-2">Saturday: 10:00 AM - 7:00 PM</li>
-                        <li class="mb-2">Sunday: 12:00 PM - 6:00 PM</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2" style="color: #D4AF37;"></i>Monday - Friday: 10:00 AM - 8:00 PM</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2" style="color: #D4AF37;"></i>Saturday: 10:00 AM - 7:00 PM</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2" style="color: #D4AF37;"></i>Sunday: 12:00 PM - 6:00 PM</li>
                     </ul>
-                    <div class="mt-3 mb-3">
-                        <img src="../images/footer-badge.png" alt="Award Winning Salon" class="img-fluid"
-                            style="max-height: 80px;">
-                    </div>
                 </div>
             </div>
             <hr class="mt-4 mb-4" style="background-color: #444;">
@@ -703,9 +941,18 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/loading.js"></script>
     <script src="../scripts/notifications.js"></script>
     <script>
+        // Navbar scroll effect - SAME AS CONTACT PAGE
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
         // ENTER OVERLAY + LOADING (same as before)
         document.addEventListener('DOMContentLoaded', function () {
             const enterOverlay = document.getElementById('enterOverlay');
@@ -716,15 +963,15 @@
 
             if (hasEntered) {
                 enterOverlay.style.display = 'none';
+                // Show loading screen briefly even after entering
+                loadingScreen.style.display = 'flex';
+                loadingScreen.style.opacity = '1';
                 setTimeout(() => {
-                    loadingScreen.style.opacity = '1';
+                    loadingScreen.style.opacity = '0';
                     setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                        }, 500);
-                    }, 2000);
-                }, 100);
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 1000);
             } else {
                 enterOverlay.style.display = 'flex';
                 loadingScreen.style.display = 'none';
@@ -764,7 +1011,47 @@
             setInterval(() => { console.clear(); }, 2000);
             console.log = console.warn = console.error = console.info = console.debug = function () { };
         })();
+
+        // ===== CUSTOM CURSOR LOGIC (identical to contact page) =====
+        const cursor = document.getElementById('customCursor');
+        const trail = document.getElementById('cursorTrail');
+        
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Trail follows with slight delay
+                setTimeout(() => {
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
+                }, 50);
+            });
+        });
+
+        // Hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .btn, .nav-link, .navbar-brand, .social-icons a, .carousel-control-prev, .carousel-control-next, .bottle-item, .drink-item');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.classList.add('hidden');
+            trail.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.classList.remove('hidden');
+            trail.style.opacity = '0.7';
+        });
     </script>
 </body>
-
 </html>

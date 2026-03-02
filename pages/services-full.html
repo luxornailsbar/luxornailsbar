@@ -24,13 +24,233 @@
             color: #FFFFFF !important;
         }
 
+        /* ===== UPDATED NAVBAR – SAME AS CONTACT PAGE ===== */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            z-index: 9999 !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar.navbar-scrolled {
+            padding: 8px 0;
+            background-color: rgba(0, 0, 0, 0.98) !important;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand:hover {
+            color: #D4AF37 !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 30px;
+            height: 2px;
+            background-color: #D4AF37;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #D4AF37 !important;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-link.active {
+            color: #D4AF37 !important;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .navbar-toggler {
+            border: 1px solid #D4AF37;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover .navbar-toggler-icon {
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+        }
+
+        /* ===== LOADING SCREEN - SAME AS CONTACT PAGE ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-container {
+            text-align: center;
+        }
+
+        .loading-logo {
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-color: #D4AF37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        .loading-text {
+            color: #D4AF37;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            animation: fadeInOut 2s infinite;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #f5e6b3);
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
         .service-header {
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
                 url('../images/hero-background.png') center/cover no-repeat;
             color: #FFFFFF;
-            padding: 3rem 0;
+            padding: 120px 0 50px;
             margin-bottom: 3rem;
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .service-header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #FFFFFF !important;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .service-header p {
+            font-size: 1.4rem;
+            color: #FFFFFF !important;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .service-card-full {
@@ -40,14 +260,15 @@
             padding: 2rem;
             margin-bottom: 2rem;
             height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             border-left: 5px solid #D4AF37;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease;
         }
 
         .service-card-full:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
             border-color: #D4AF37;
         }
 
@@ -55,6 +276,11 @@
             font-size: 2.5rem;
             color: #D4AF37;
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card-full:hover .service-icon-large {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .price-tag {
@@ -66,6 +292,12 @@
             font-size: 1.2rem;
             display: inline-block;
             margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .price-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         .service-category {
@@ -75,6 +307,14 @@
             padding: 2.5rem;
             margin-bottom: 3rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
+        }
+
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         .category-header {
@@ -91,12 +331,13 @@
             color: #D4AF37 !important;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .back-to-home:hover {
             color: #FFFFFF !important;
-            text-decoration: underline;
+            transform: translateX(-5px);
         }
 
         .service-image-full {
@@ -106,6 +347,12 @@
             border-radius: 10px;
             margin-bottom: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-image-full:hover {
+            transform: scale(1.02);
+            border-color: #D4AF37;
         }
 
         .service-note {
@@ -116,6 +363,12 @@
             border-radius: 0 5px 5px 0;
             font-size: 0.9rem;
             color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+
+        .service-note:hover {
+            background-color: rgba(212, 175, 55, 0.15);
+            transform: translateX(5px);
         }
 
         /* Override text colors */
@@ -142,6 +395,12 @@
         ul li {
             color: #CCCCCC;
             margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateX(5px);
+            color: #FFFFFF !important;
         }
 
         ul li strong {
@@ -153,28 +412,115 @@
             background-color: rgba(212, 175, 55, 0.1) !important;
             border-color: #D4AF37 !important;
             color: #FFFFFF !important;
+            animation: fadeInUp 1s ease;
+            transition: all 0.3s ease;
+        }
+
+        .alert-warning:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
         }
 
         /* CTA section */
         .rounded[style*="background: linear-gradient"] {
             background: #111111 !important;
             border: 2px solid #D4AF37 !important;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .rounded[style*="background: linear-gradient"]:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
         }
 
         /* Button styling */
         .btn-outline-primary {
             border-color: #D4AF37;
             color: #D4AF37 !important;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+            border: 2px solid #D4AF37 !important;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .btn-outline-primary:hover::before {
+            left: 100%;
         }
 
         .btn-outline-primary:hover {
-            background-color: #D4AF37;
+            background-color: #D4AF37 !important;
             color: #000000 !important;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+            border-color: #D4AF37 !important;
+        }
+
+        .btn-outline-primary:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn-outline-secondary {
             border-color: #FFFFFF;
             color: #FFFFFF !important;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+            border: 2px solid #FFFFFF !important;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline-secondary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .btn-outline-secondary:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #FFFFFF !important;
+            color: #000000 !important;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.4);
+            border-color: #FFFFFF !important;
+        }
+
+        .btn-outline-secondary:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
         }
 
         .btn-outline-secondary:hover {
@@ -182,72 +528,74 @@
             color: #000000 !important;
         }
 
-        /* Navbar overrides */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.95) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: #FFFFFF !important;
-        }
-
-        .nav-link.active {
-            color: #D4AF37 !important;
-        }
-
-        .navbar-toggler {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-        .bg-white {
-            background-color: rgba(0, 0, 0, 0.95) !important;
-        }
-
-        .shadow-sm {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Footer overrides */
+        /* Footer styling */
         .footer {
-            background-color: #000000 !important;
+            background-color: rgba(0, 0, 0, 0.95) !important;
             color: #FFFFFF !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 60px 0 30px;
         }
 
         .footer-brand {
             color: #FFFFFF !important;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-brand:hover {
+            color: #D4AF37 !important;
         }
 
         .social-icons a {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #FFFFFF;
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a i {
+            color: #FFFFFF !important;
+            transition: all 0.3s ease;
         }
 
         .social-icons a:hover {
             background-color: #D4AF37;
-            color: #000000;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .social-icons a:hover i {
+            color: #000000 !important;
         }
 
         hr {
-            border-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(212, 175, 55, 0.3) !important;
         }
 
         .list-unstyled li {
             color: #CCCCCC;
+            transition: all 0.3s ease;
+        }
+
+        .list-unstyled li:hover {
+            transform: translateX(5px);
+            color: #FFFFFF !important;
         }
 
         .footer a {
             color: #CCCCCC;
+            transition: all 0.3s ease;
         }
 
         .footer a:hover {
-            color: #D4AF37;
+            color: #D4AF37 !important;
+            transform: translateX(5px);
         }
 
         @media (max-width: 768px) {
@@ -256,25 +604,57 @@
             }
 
             .service-header {
-                padding: 2rem 0;
+                padding: 100px 0 40px;
+            }
+
+            .service-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-header p {
+                font-size: 1.2rem;
             }
 
             .service-category {
                 padding: 1.5rem;
             }
         }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+    <!-- LOADING SCREEN - SAME AS CONTACT PAGE -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <img src="../images/logo.png" alt="Luxor Nails Bar" height="60">
+            </div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">CONNECTING WITH YOU</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loadingProgress"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation - UPDATED WITH CONTACT PAGE STYLING -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
                 <img src="../images/logo.png" alt="Luxor Nails Bar Logo" height="40" class="me-2">
                 Luxor Nails Bar
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -374,7 +754,6 @@
                         <ul class="mt-3">
                             <li><strong>PINK & WHITE Full Set:</strong> $70 & Up</li>
                             <li><strong>PINK & WHITE Fill:</strong> $60 & Up</li>
-                            <li><strong>PINK Fill Only:</strong> $50 & Up</li>
                         </ul>
                     </div>
                 </div>
@@ -391,7 +770,6 @@
                         <ul class="mt-3">
                             <li><strong>BUILDER GEL Full Set:</strong> $70 & Up</li>
                             <li><strong>BUILDER GEL Fill:</strong> $60 & Up</li>
-                            <li><strong>BUILDER GEL Fill Only:</strong> $50 & Up</li>
                         </ul>
                     </div>
                 </div>
@@ -408,7 +786,7 @@
                         <ul class="mt-3">
                             <li><strong>GEL X Full Set:</strong> $70 & Up</li>
                             <li><strong>GEL X Fill:</strong> $60 & Up</li>
-                            <li><strong>GEL X Fill Only:</strong> $50 & Up</li>
+                        <!--    <li><strong>GEL X Fill Only:</strong> $50 & Up</li>  -->
                         </ul>
                     </div>
                 </div>
@@ -520,7 +898,7 @@
         </div>
 
         <!-- Pedicure -->
-        <!--<div class="service-category">
+        <div class="service-category">
             <div class="category-header">
                 <h2 class="section-title mb-0"><i class="bi bi-diamond me-2" style="color: #D4AF37;"></i> Pedicure</h2>
                 <p class="text-muted mb-0">Luxurious foot care treatments</p>
@@ -531,69 +909,76 @@
             </div>
 
             <div class="row">
-                <!-- Basic Pedicures -->
-        <!--<div class="col-md-6 mb-4">
-            <div class="service-card-full">
-                <div class="service-icon-large">
-                    <i class="bi bi-heart"></i>
+<!-- The Ultimate LUXOR Pedicure -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h3>The Ultimate LUXOR Pedicure</h3>
+                        <div class="price-tag">$90</div>
+                        <p class="text-muted mt-2">Our number one House Luxury package encompasses nail trimming, shaping, cuticle grooming, massages with scrub (longer), mud mask, hot towel, hot stone (warm smooth rocks massage), Hydrate paraffin, and Collagen cream-infuse socks.</p>
+                    </div>
                 </div>
-                <h3>Basic Pedicures</h3>
-                <p class="text-muted">Essential foot care for healthy, beautiful feet.</p>
-                <ul class="mt-3">
-                    <li><strong>Spa Pedicure:</strong> $37<br><small>This service incorporates nail trimming,
-                            shaping, and cuticle grooming massages with lotion, and hot towel.</small></li>
-                    <li><strong>Signature Pedicure:</strong> $44<br><small>Signature pedicures consist of nails
-                            trimming, shaping, cuticle grooming, and massages with scrub and hot towel.</small>
-                    </li>
-                </ul>
+
+                <!-- Royal Hot Stone Pedicure-->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h3>Royal Hot Stone Pedicure</h3>
+                        <div class="price-tag">$70</div>
+                        <p class="text-muted mt-2">Our luxury package entails nails trimming, shaping, cuticle grooming massages with scrub (longer), mud mask, hot towel and hot stone (warm smooth rocks massage), and hydrated paraffin.</p>
+                    </div>
+                </div>
+
+                <!-- LUXOR Spa Pedicure -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <h3>LUXOR Spa Pedicure</h3>
+                        <div class="price-tag">$55</div>
+                        <p class="text-muted mt-2">The package comes with nails trimming, shaping, cuticle grooming massages with scrub (longer), mud mask, and hot towel.</p>
+                    </div>
+                </div>
+
+                <!-- Signature Pedicure -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <h3>Signature Pedicure</h3>
+                        <div class="price-tag">$44</div>
+                        <p class="text-muted mt-2">Signature pedicures consist of nails trimming, shaping, cuticle grooming, and massages with scrub and hot towel.</p>
+                    </div>
+                </div>
+
+                <!-- Spa Pedicure -->
+                <div class="col-md-4 mb-4">
+                    <div class="service-card-full">
+                        <div class="service-icon-large">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h3>Spa Pedicure</h3>
+                        <div class="price-tag">$37</div>
+                        <p class="text-muted mt-2">This service incorporates nail trimming, shaping, and cuticle grooming massages with lotion, and hot towel.</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Premium Pedicures -->
-        <!--<div class="col-md-6 mb-4">
-            <div class="service-card-full">
-                <div class="service-icon-large">
-                    <i class="bi bi-star-fill"></i>
-                </div>
-                <h3>Premium Pedicures</h3>
-                <p class="text-muted">Ultimate luxury treatments for the most indulgent foot care experience.
-                </p>
-                <ul class="mt-3">
-                    <li><strong>LUXOR Spa Pedicure:</strong> $55<br><small>The package comes with nails
-                            trimming, shaping, cuticle grooming massages with scrub (longer), mud mask, and hot
-                            towel.</small></li>
-                    <li><strong>Royal Hot Stone Pedicure:</strong> $70<br><small>Our luxury package entails
-                            nails trimming, shaping, cuticle grooming massages with scrub (longer), mud mask,
-                            hot towel and hot stone (warm smooth rocks massage), and hydrated paraffin.</small>
-                    </li>
-                </ul>
-            </div>
-        </div>-->
-
-        <!-- Ultimate Pedicure -->
-        <!--<div class="col-md-12 mb-4">
-            <div class="service-card-full">
-                <div class="service-icon-large">
-                    <i class="bi bi-crown"></i>
-                </div>
-                <h3>The Ultimate LUXOR Pedicure</h3>
-                <div class="price-tag">$90</div>
-                <p class="text-muted mt-2">Our number one House Luxury package encompasses nail trimming,
-                    shaping, cuticle grooming, massages with scrub (longer), mud mask, hot towel, hot stone
-                    (warm smooth rocks massage), Hydrate paraffin, and Collagen cream-infuse socks.</p>
-            </div>
-        </div>
-    </div>
-    </div>-->
 
         <!-- Price Note -->
-        <!--<div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-warning text-center" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
             <strong>Please Note:</strong> Prices are subject to change without notice
         </div>
 
         <!-- Call to Action -->
-        <!--<div class="row justify-content-center mt-5 mb-5">
+        <div class="row justify-content-center mt-5 mb-5">
             <div class="col-md-8 text-center">
                 <div class="p-5 rounded" style="background: #111111; border: 2px solid #D4AF37;">
                     <h3 class="mb-3">Ready to Call Us Appointment?</h3>
@@ -612,51 +997,52 @@
     </div>
 
     <!-- Footer -->
-        <footer class="footer mt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="d-flex align-items-center mb-3">
-                            <!-- <img src="../images/logo-white.png" alt="Luxor Nails Bar" height="40" class="me-3"> -->
-                            <h3 class="footer-brand mb-0">Luxor Nails Bar</h3>
-                        </div>
-                        <p>Providing premium beauty services since 2020. Our mission is to enhance your natural beauty
-                            in a relaxing, luxurious environment.</p>
-                        <div class="social-icons mt-3">
-                            <a href="https://www.facebook.com/Luxor-Nails-Bar-at-the-Fountains-Palomar-104653148779038"
-                                class="me-3">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="https://www.instagram.com/luxornailsbar/">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                        </div>
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <!-- <img src="../images/logo-white.png" alt="Luxor Nails Bar" height="40" class="me-3"> -->
+                        <h3 class="footer-brand mb-0">Luxor Nails Bar</h3>
                     </div>
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <h5>Contact Info</h5>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <i class="bi bi-geo-alt me-2"></i>3901 Fountainblue Ln #170, Lexington, KY 40513
-                            </li>
-                            <li class="mb-2">
-                                <i class="bi bi-telephone me-2"></i>+18595545454
-                            </li>
-                            <li class="mb-2">
-                                <i class="bi bi-envelope me-2"></i>luxnailsbarlexington@gmail.com
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5>Business Hours</h5>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">Monday - Friday: 10:00 AM - 8:00 PM</li>
-                            <li class="mb-2">Saturday: 10:00 AM - 7:00 PM</li>
-                            <li class="mb-2">Sunday: 12:00 PM - 6:00 PM</li>
-                        </ul>
+                    <p>Providing premium beauty services since 2020. Our mission is to enhance your natural beauty
+                        in a relaxing, luxurious environment.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/Luxor-Nails-Bar-at-the-Fountains-Palomar-104653148779038"
+                            class="me-3">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/luxornailsbar/">
+                            <i class="bi bi-instagram"></i>
+                        </a>
                     </div>
                 </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>3901 Fountainblue Ln #170, Lexington, KY 40513
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-telephone me-2"></i>+18595545454
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope me-2"></i>luxnailsbarlexington@gmail.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Business Hours</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Monday - Friday: 10:00 AM - 8:00 PM</li>
+                        <li class="mb-2">Saturday: 10:00 AM - 7:00 PM</li>
+                        <li class="mb-2">Sunday: 12:00 PM - 6:00 PM</li>
+                    </ul>
+                </div>
             </div>
-            <hr class="mt-4 mb-4">
+        </div>
+        <hr class="mt-4 mb-4">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <p>&copy; 2020 Luxor Nails Bar. All rights reserved.</p>
@@ -666,17 +1052,35 @@
                     <a href="#">Terms of Service</a>
                 </div>
             </div>
-    </div>
+        </div>
     </footer>
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/loading.js"></script>
-    <script src="../scripts/cursor.js"></script>
-    <script src="../scripts/notifications.js"></script>
-    <!-- Anti DevTools Script -->
-
+    <!-- Navbar scroll effect - SAME AS CONTACT PAGE -->
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Loading screen - SAME AS CONTACT PAGE
+        window.addEventListener('load', function() { 
+            const ls = document.getElementById('loadingScreen'); 
+            setTimeout(() => { 
+                ls.style.opacity = '0'; 
+                setTimeout(() => { 
+                    ls.style.display = 'none'; 
+                }, 500); 
+            }, 1000); 
+        });
+
+        // Anti DevTools Script
         (function () {
             'use strict';
 
@@ -737,17 +1141,6 @@
                 }
             });
 
-            // Detect if DevTools is open by checking window size differences
-            const devtoolsChecker = setInterval(function () {
-                const widthThreshold = window.outerWidth - window.innerWidth > 160;
-                const heightThreshold = window.outerHeight - window.innerHeight > 160;
-
-                if (widthThreshold || heightThreshold) {
-                    // DevTools likely open
-                    console.warn('Developer tools detected');
-                }
-            }, 1000);
-
             // Clear console periodically
             setInterval(function () {
                 console.clear();
@@ -761,6 +1154,8 @@
             console.debug = function () { };
         })();
     </script>
+    <script src="../scripts/cursor.js"></script>
+    <script src="../scripts/notifications.js"></script>
 </body>
 
 </html>

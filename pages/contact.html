@@ -13,6 +13,57 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* ===== CURSOR CUSTOMIZATION ===== */
+        /* Hide default cursor */
+        * {
+            cursor: none !important;
+        }
+
+        /* Custom cursor elements */
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.15);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+            z-index: 99999;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #D4AF37;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.7;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            z-index: 99998;
+            box-shadow: 0 0 12px #D4AF37;
+        }
+
+        /* Enlarge cursor on interactive elements */
+        .custom-cursor.hover {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(212, 175, 55, 0.25);
+            border-color: #fff;
+            box-shadow: 0 0 30px #D4AF37;
+            transition: all 0.15s ease;
+        }
+
+        /* Hide cursor when leaving window */
+        .custom-cursor.hidden {
+            opacity: 0;
+        }
+
         /* ===== BUTTON ANIMATIONS ===== */
         .btn-animated {
             position: relative;
@@ -191,6 +242,7 @@
         body {
             background-color: #000000 !important;
             color: #FFFFFF !important;
+            padding-top: 76px; /* Add padding to prevent content from hiding under fixed navbar */
         }
 
         /* ----- FORCE ALL TEXT TO WHITE (except gold accents) ----- */
@@ -257,6 +309,199 @@
             margin-right: 6px;
         }
 
+        /* ===== FIXED NAVBAR STYLES ===== */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            z-index: 9999 !important; /* Higher z-index to stay above loading screen */
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Navbar scroll effect */
+        .navbar.navbar-scrolled {
+            padding: 8px 0;
+            background-color: rgba(0, 0, 0, 0.98) !important;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .navbar-brand {
+            color: #FFFFFF !important;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #D4AF37 !important;
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #FFFFFF !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 30px;
+            height: 2px;
+            background-color: #D4AF37;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #D4AF37 !important;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-link.active {
+            color: #D4AF37 !important;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .navbar-toggler {
+            border: 1px solid #D4AF37;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover .navbar-toggler-icon {
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+        }
+
+        /* Loading screen styles - fixed z-index */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000; /* Higher than navbar */
+            transition: opacity 0.5s ease;
+            pointer-events: none; /* Allow clicking through when hidden */
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-container {
+            text-align: center;
+        }
+
+        .loading-logo {
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-color: #D4AF37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        .loading-text {
+            color: #D4AF37;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            animation: fadeInOut 2s infinite;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #f5e6b3);
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
         /* ---------- rest of your styles (unchanged, but now all text white) ---------- */
         .contact-hero {
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
@@ -264,7 +509,7 @@
             background-size: cover;
             color: #FFFFFF;
             padding: 120px 0;
-            margin-top: -76px;
+            margin-top: 0; /* Removed negative margin */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -276,6 +521,7 @@
             font-family: 'Playfair Display', serif;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             letter-spacing: 2px;
+            animation: fadeInUp 1s ease;
         }
 
         .contact-hero p.hero-text {
@@ -288,6 +534,18 @@
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .contact-info-card {
@@ -296,20 +554,26 @@
             padding: 30px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             height: 100%;
-            transition: transform 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #FFFFFF;
+            animation: fadeInUp 1s ease;
         }
 
         .contact-info-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: #D4AF37;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
         }
 
         .contact-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .contact-detail {
@@ -322,6 +586,13 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         .map-container iframe {
@@ -338,6 +609,13 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.3);
             background: #0a0a0a;
+            transition: all 0.3s ease;
+        }
+
+        .store-gallery:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         .carousel-inner {
@@ -349,6 +627,11 @@
             object-fit: cover;
             width: 100%;
             border-bottom: 2px solid #D4AF37;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.05);
         }
 
         .carousel-caption {
@@ -361,6 +644,12 @@
             text-align: left;
             color: #FFFFFF;
             font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-item:hover .carousel-caption {
+            transform: translateY(0);
         }
 
         .carousel-caption h5 {
@@ -384,6 +673,13 @@
             padding: 20px;
             background-size: 60%;
             border: 1px solid #FFFFFF;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            background-color: #D4AF37;
+            transform: scale(1.1);
         }
 
         .carousel-indicators button {
@@ -392,10 +688,16 @@
             height: 12px;
             border-radius: 50%;
             margin: 0 6px;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators button:hover {
+            transform: scale(1.2);
         }
 
         .carousel-indicators button.active {
             background-color: #FFFFFF !important;
+            transform: scale(1.2);
         }
 
         /* ----- salon address card – all text white, headings gold ----- */
@@ -407,6 +709,14 @@
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: slideInRight 1s ease;
+        }
+
+        .address-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
         }
 
         .address-card h4 {
@@ -418,6 +728,17 @@
         .address-card p {
             margin-bottom: 5px;
             color: #FFFFFF !important;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* rest of your existing styles – with all text forced white */
@@ -448,6 +769,7 @@
 
         .social-contact a:hover {
             background-color: #D4AF37;
+            transform: translateY(-3px) scale(1.1);
         }
 
         .social-contact a:hover i {
@@ -460,6 +782,25 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: slideInLeft 1s ease;
+        }
+
+        .contact-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .form-control,
@@ -468,6 +809,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #FFFFFF !important;
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus,
@@ -476,6 +818,7 @@
             box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
             background-color: rgba(0, 0, 0, 0.7);
             color: #FFFFFF !important;
+            transform: translateY(-2px);
         }
 
         /* FAQ section – all text white */
@@ -485,6 +828,12 @@
             background-color: #111111 !important;
             color: #FFFFFF !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background-color: rgba(212, 175, 55, 0.1) !important;
+            border-color: #D4AF37 !important;
         }
 
         .accordion-button:not(.collapsed) {
@@ -505,14 +854,24 @@
             background-color: #000000;
             color: #FFFFFF;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 30px;
         }
 
         .footer a {
             color: #FFFFFF !important;
+            transition: all 0.3s ease;
         }
 
         .footer a:hover {
             color: #D4AF37 !important;
+            transform: translateX(5px);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #D4AF37 !important;
+            margin-bottom: 20px;
         }
 
         .social-icons a {
@@ -524,43 +883,40 @@
             align-items: center;
             justify-content: center;
             margin-right: 8px;
+            transition: all 0.3s ease;
         }
 
         .social-icons a i {
             color: #FFFFFF !important;
+            transition: all 0.3s ease;
         }
 
         .social-icons a:hover {
             background-color: #D4AF37;
+            transform: translateY(-3px) scale(1.1);
         }
 
         .social-icons a:hover i {
             color: #000000 !important;
         }
 
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.95) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: #FFFFFF !important;
-        }
-
-        .nav-link.active {
-            color: #D4AF37 !important;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
         .section-title {
             color: #FFFFFF !important;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
         }
 
         .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
             background-color: #D4AF37;
         }
 
@@ -578,16 +934,23 @@
             }
         }
 
-        .loading-screen {
-            background-color: #000000;
-        }
-
         .list-unstyled li {
             color: #FFFFFF !important;
+            transition: all 0.3s ease;
+        }
+
+        .list-unstyled li:hover {
+            transform: translateX(5px);
+            color: #D4AF37 !important;
         }
 
         .list-unstyled li i {
             color: #D4AF37 !important;
+            transition: all 0.3s ease;
+        }
+
+        .list-unstyled li:hover i {
+            transform: scale(1.2);
         }
 
         .quick-links a {
@@ -595,10 +958,12 @@
             margin-bottom: 10px;
             color: #FFFFFF !important;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .quick-links a:hover {
             color: #D4AF37 !important;
+            transform: translateX(10px);
         }
 
         /* Force all .text-muted to white */
@@ -620,19 +985,31 @@
             color: #FFFFFF !important;
         }
 
-        /* Gold only for icons and accents – already set above */
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section padding */
+        .section-padding {
+            padding: 80px 0;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Custom Cursor Elements -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
                 <img src="../images/logo.png" alt="Luxor Nails Bar Logo" height="40" class="me-2">
                 Luxor Nails Bar
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -801,7 +1178,7 @@
                                 <div class="carousel-item active">
                                     <img src="../images/mnus-sreysart.png"
                                         class="d-block w-100" alt="Luxor Nails Bar Interior">
-                                    <div class="carousel-caption">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <!--<h5>✨ Luxurious Salon Interior</h5>
                                         <p>Relax in our serene, elegant space</p>-->
                                     </div>
@@ -809,7 +1186,7 @@
                                 <div class="carousel-item">
                                     <img src="../images/daii-sart.png"
                                         class="d-block w-100" alt="Nail Art Station">
-                                    <div class="carousel-caption">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <!--<h5>💅 Premium Nail Services</h5>
                                         <p>Expert technicians, top-quality products</p>-->
                                     </div>
@@ -817,7 +1194,7 @@
                                 <div class="carousel-item">
                                     <img src="../images/pedicure-chairs.png"
                                         class="d-block w-100" alt="Pedicure Chairs">
-                                    <div class="carousel-caption">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <!--<h5>🦋 Spa Pedicure Suite</h5>
                                         <p>Comfortable chairs, hot stone massage</p>-->
                                     </div>
@@ -825,7 +1202,7 @@
                                 <div class="carousel-item">
                                     <img src="../images/drink-bar.png"
                                         class="d-block w-100" alt="Drink Bar at Salon">
-                                    <div class="carousel-caption">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <!--<h5>🥂 Complimentary Drinks</h5>
                                         <p>Wine, cocktails & mocktails while you relax</p>-->
                                     </div>
@@ -833,7 +1210,7 @@
                                 <div class="carousel-item">
                                     <img src="../images/salon-reception.png"
                                         class="d-block w-100" alt="Salon Reception">
-                                    <div class="carousel-caption">
+                                    <div class="carousel-caption d-none d-md-block">
                                         <!--<h5>👑 Luxor Nails Bar</h5>
                                         <p>Your beauty oasis since 2020</p>-->
                                     </div>
@@ -908,7 +1285,7 @@
             <hr class="mt-4 mb-4">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2020 Luxor Nails Bar. All rights reserved.</p>
+                    <p>&copy; 2026 Luxor Nails Bar. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end"><a href="#" class="me-3">Privacy Policy</a><a href="#">Terms of
                         Service</a></div>
@@ -918,7 +1295,18 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/notifications.js"></script>
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
         // Contact Form Submission with Enhanced UI (fully functional)
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -943,6 +1331,7 @@
         });
 
         function getSubjectText(v) { const s = { appointment: 'Appointment Inquiry', service: 'Service Information', pricing: 'Pricing Inquiry', product: 'Product Inquiry', feedback: 'Feedback & Reviews', other: 'Other' }; return s[v] || v; }
+        
         function showConfirmationModal(d) {
             const existing = document.getElementById('confirmationModal'); if (existing) existing.remove();
             const subj = getSubjectText(d.subject);
@@ -950,7 +1339,9 @@
             const el = document.createElement('div'); el.innerHTML = html; document.body.appendChild(el.firstElementChild);
             document.getElementById('confirmationModal').addEventListener('click', function (e) { if (e.target === this) closeConfirmationModal(); });
         }
+        
         function closeConfirmationModal() { const m = document.getElementById('confirmationModal'); if (m) { m.style.opacity = '0'; setTimeout(() => { m.parentNode?.removeChild(m); }, 300); } }
+        
         function validateForm(d) {
             let valid = true;
             document.querySelectorAll('.error-message, .is-invalid').forEach(el => { if (el.classList?.contains('error-message')) el.remove(); else el.classList?.remove('is-invalid'); });
@@ -961,14 +1352,18 @@
             if (d.phone && !/^[\d\s\-\+\(\)]{10,}$/.test(d.phone)) { error('contactPhone', 'Valid phone number'); valid = false; }
             if (!valid) showErrorModal(); return valid;
         }
+        
         function error(id, msg) { const f = document.getElementById(id); f.classList.add('is-invalid'); const e = document.createElement('div'); e.className = 'error-message invalid-feedback'; e.textContent = msg; f.closest('.mb-3')?.appendChild(e) || f.parentElement.appendChild(e); f.style.animation = 'shake 0.5s'; setTimeout(() => f.style.animation = '', 500); }
+        
         function showErrorModal() {
             const existing = document.getElementById('errorModal'); if (existing) existing.remove();
             const html = `<div class="modal fade show" id="errorModal" style="display:block; background:rgba(0,0,0,0.8);"><div class="modal-dialog modal-dialog-centered"><div class="modal-content" style="background:#111111; border:1px solid rgba(255,255,255,0.1);"><div class="modal-header" style="border-bottom:1px solid rgba(255,255,255,0.1);"><h5 class="modal-title" style="color:#ff6b6b;"><i class="bi bi-exclamation-circle-fill me-2"></i>Form Errors</h5><button type="button" class="btn-close" onclick="closeErrorModal()" style="filter:invert(1);"></button></div><div class="modal-body"><div class="text-center mb-4"><div style="font-size:4rem; color:#ff6b6b;"><i class="bi bi-exclamation-triangle"></i></div><h4 style="color:#fff;">Please Fix Errors</h4><p style="color:#fff;">Correct highlighted fields before submitting.</p></div><div class="alert" style="background:rgba(220,53,69,0.1); border-left:3px solid #dc3545;"><p class="mb-0" style="color:#fff;"><i class="bi bi-info-circle me-1"></i>Check the highlighted fields.</p></div></div><div class="modal-footer" style="border-top:1px solid rgba(255,255,255,0.1);"><button class="btn btn-outline-light" onclick="closeErrorModal()">Cancel</button><button class="btn btn-primary" onclick="closeErrorModal()">OK</button></div></div></div></div>`;
             const el = document.createElement('div'); el.innerHTML = html; document.body.appendChild(el.firstElementChild);
             document.getElementById('errorModal').addEventListener('click', function (e) { if (e.target === this) closeErrorModal(); });
         }
+        
         function closeErrorModal() { const m = document.getElementById('errorModal'); if (m) { m.style.opacity = '0'; setTimeout(() => { m.parentNode?.removeChild(m); }, 300); } }
+        
         function resetButton(b, t) { b.innerHTML = t; b.disabled = false; b.classList.remove('loading'); }
 
         // Real-time validation
@@ -986,27 +1381,74 @@
             });
         });
 
-        // Loading screen
-        window.addEventListener('load', function () { const ls = document.getElementById('loadingScreen'); setTimeout(() => { ls.style.opacity = '0'; setTimeout(() => { ls.style.display = 'none'; }, 500); }, 1000); });
+        // Loading screen with proper hide
+        window.addEventListener('load', function () { 
+            const ls = document.getElementById('loadingScreen'); 
+            setTimeout(() => { 
+                ls.classList.add('hidden');
+                setTimeout(() => { 
+                    ls.style.display = 'none'; 
+                }, 500); 
+            }, 1000); 
+        });
 
         // anti-inspect (simplified)
         (function () { 'use strict'; document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('keydown', e => { if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && e.keyCode === 85) || (e.metaKey && e.altKey && [73, 74, 67].includes(e.keyCode))) e.preventDefault(); }); setInterval(() => console.clear(), 2000); console.log = console.warn = console.error = console.info = console.debug = () => { }; })();
 
-        // Add missing shake animation style
-        const style = document.createElement('style'); style.textContent = `@keyframes shake { 0%,100% { transform: translateX(0); } 10%,30%,50%,70%,90% { transform: translateX(-5px); } 20%,40%,60%,80% { transform: translateX(5px); } } .spinner-border { display: inline-block; width: 1rem; height: 1rem; border: 0.2em solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spinner-border .75s linear infinite; } @keyframes spinner-border { to { transform: rotate(360deg); } }`; document.head.appendChild(style);
+        // Add missing animation styles
+        const style = document.createElement('style'); 
+        style.textContent = `@keyframes shake { 0%,100% { transform: translateX(0); } 10%,30%,50%,70%,90% { transform: translateX(-5px); } 20%,40%,60%,80% { transform: translateX(5px); } } .spinner-border { display: inline-block; width: 1rem; height: 1rem; border: 0.2em solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spinner-border .75s linear infinite; } @keyframes spinner-border { to { transform: rotate(360deg); } }`; 
+        document.head.appendChild(style);
 
-        // Make sure nav links actually work (they already point to index.html sections)
-        // Add smooth scroll behavior for any same-page anchor links
+        // Make sure nav links actually work
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
-                // If it's an internal anchor on another page, let default behavior work (page reloads)
-                // We just want to ensure they are clickable, which they are.
-                // If the user is already on index.html, anchors will work natively with smooth scroll if we add:
                 if (href.startsWith('../index.html#')) {
                     // This will navigate to index page with hash - perfectly fine
                 }
             });
+        });
+
+        // ===== CUSTOM CURSOR LOGIC =====
+        const cursor = document.getElementById('customCursor');
+        const trail = document.getElementById('cursorTrail');
+        
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Trail follows with slight delay
+                setTimeout(() => {
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
+                }, 50);
+            });
+        });
+
+        // Hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .btn, .nav-link, .navbar-brand, .social-icons a, .carousel-control-prev, .carousel-control-next');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.classList.add('hidden');
+            trail.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.classList.remove('hidden');
+            trail.style.opacity = '0.7';
         });
     </script>
 </body>
