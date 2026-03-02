@@ -241,10 +241,9 @@ div {
 
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('../images/hero-background.png') center/cover no-repeat;
+                url('../images/hero-background.png') no-repeat;
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
     color: var(--white-text);
     padding: 150px 0;
     margin-top: -76px;
@@ -257,41 +256,108 @@ div {
     position: relative;
 }
 
-/* Tablet Optimization (768px - 992px) */
-@media (max-width: 992px) {
-    .hero-section {
-        padding: 130px 0;
-        min-height: 80vh;
-        background-position: 30% center; /* Adjusts for tablet view */
-    }
-}
+/* ===== iPads & Tablets (All sizes) ===== */
 
-/* Mobile Landscape & Small Tablets (576px - 768px) */
-@media (max-width: 768px) {
+/* iPad Pro 12.9" (1024px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
     .hero-section {
-        padding: 120px 0;
-        min-height: 75vh;
-        background-position: 25% center; /* Focuses on the left/center part of the image */
-        background-size: cover;
+        padding: 140px 0;
+        min-height: 80vh;
+        background-position: center center;
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 4rem;
+    }
+    
+    .hero-text {
+        font-size: 1.3rem;
+        max-width: 700px;
+    }
+}
+
+/* iPad Air & iPad Pro 11" (820px - 1024px) */
+@media (min-width: 820px) and (max-width: 1023px) {
+    .hero-section {
+        padding: 130px 0;
+        min-height: 75vh;
+        background-position: 45% center;
+    }
+    
+    .hero-title {
+        font-size: 3.8rem;
     }
     
     .hero-text {
         font-size: 1.2rem;
-        padding: 0 20px;
+        max-width: 650px;
     }
 }
 
-/* Mobile Portrait (576px and below) */
-@media (max-width: 576px) {
+/* iPad Mini & smaller tablets (768px - 820px) */
+@media (min-width: 768px) and (max-width: 819px) {
+    .hero-section {
+        padding: 120px 0;
+        min-height: 70vh;
+        background-position: 40% center;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-text {
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+}
+
+/* ===== Mobile Devices (All sizes) ===== */
+
+/* Large Phones (426px - 767px) - Samsung S20, iPhone 12-15 Plus/Pro Max */
+@media (min-width: 426px) and (max-width: 767px) {
+    .hero-section {
+        padding: 110px 0;
+        min-height: 65vh;
+        background-position: 30% center;
+    }
+    
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+        padding: 0 30px;
+        max-width: 500px;
+    }
+}
+
+/* Medium Phones (376px - 425px) - iPhone 12-15, Galaxy S21/S22 */
+@media (min-width: 376px) and (max-width: 425px) {
     .hero-section {
         padding: 100px 0;
-        min-height: 70vh;
-        background-position: 20% center; /* Adjusts for the tall 2048x1536 image */
-        background-size: cover;
+        min-height: 60vh;
+        background-position: 25% center;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+        padding: 0 25px;
+        line-height: 1.5;
+    }
+}
+
+/* Small Phones (320px - 375px) - iPhone SE, older Androids */
+@media (min-width: 320px) and (max-width: 375px) {
+    .hero-section {
+        padding: 90px 0;
+        min-height: 55vh;
+        background-position: 20% center;
     }
     
     .hero-title {
@@ -299,19 +365,18 @@ div {
     }
     
     .hero-text {
-        font-size: 1.1rem;
-        padding: 0 15px;
-        line-height: 1.6;
+        font-size: 0.95rem;
+        padding: 0 20px;
+        line-height: 1.5;
     }
 }
 
-/* Small Mobile Devices (375px and below) */
-@media (max-width: 375px) {
+/* Very Small Phones (below 320px) */
+@media (max-width: 319px) {
     .hero-section {
         padding: 80px 0;
-        min-height: 60vh;
-        background-position: 15% center; /* Further adjustment for very small screens */
-        background-size: cover;
+        min-height: 50vh;
+        background-position: 15% center;
     }
     
     .hero-title {
@@ -319,45 +384,161 @@ div {
     }
     
     .hero-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 0 15px;
+        line-height: 1.4;
+    }
+}
+
+/* ===== Specific Device Optimizations ===== */
+
+/* iPhone 12/13/14/15 Pro Max and Plus models */
+@media (min-width: 428px) and (max-width: 430px) and (min-height: 900px) {
+    .hero-section {
+        min-height: 50vh;
+        padding: 100px 0;
+        background-position: 25% center;
+    }
+}
+
+/* iPhone X, XS, 11 Pro, 12/13/14 Pro */
+@media (min-width: 375px) and (max-width: 390px) and (min-height: 800px) {
+    .hero-section {
+        min-height: 55vh;
+        background-position: 22% center;
+    }
+}
+
+/* iPad in portrait mode */
+@media (min-width: 768px) and (max-width: 834px) and (orientation: portrait) {
+    .hero-section {
+        min-height: 60vh;
+        background-position: 40% center;
+    }
+    
+    .hero-title {
+        font-size: 3.8rem;
+    }
+}
+
+/* iPad in landscape mode */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 85vh;
+        background-position: center center;
+    }
+}
+
+/* ===== Foldable Devices ===== */
+
+/* Samsung Fold (unfolded) */
+@media (min-width: 673px) and (max-width: 720px) {
+    .hero-section {
+        padding: 120px 0;
+        min-height: 60vh;
+        background-position: 30% center;
+    }
+}
+
+/* Samsung Fold (folded) */
+@media (max-width: 280px) {
+    .hero-section {
+        padding: 70px 0;
+        min-height: 50vh;
+        background-position: 10% center;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text {
+        font-size: 0.85rem;
         padding: 0 10px;
     }
 }
 
-/* For devices in landscape mode */
+/* ===== Landscape Mode for All Mobile Devices ===== */
+
 @media (max-height: 500px) and (orientation: landscape) {
     .hero-section {
-        padding: 60px 0;
-        min-height: 100vh;
+        padding: 50px 0;
+        min-height: 120vh;
+        background-position: center center;
     }
     
     .hero-title {
         font-size: 2.2rem;
+        margin-bottom: 0.5rem;
     }
     
     .hero-text {
         font-size: 1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
+        max-width: 600px;
+    }
+    
+    .hero-buttons .btn {
+        padding: 8px 25px;
+        font-size: 0.9rem;
     }
 }
 
-/* High-resolution screens (Retina displays) */
+/* ===== High-DPI Screens (Retina) ===== */
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero-section {
-        /* Your 2048x1536 image is already high-res, so it will look great */
         background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                          url('../images/hero-background.png');
     }
 }
 
-/* Performance optimization - ensure image loads efficiently */
-.hero-section {
-    background-color: #000; /* Fallback color while image loads */
+/* ===== Helper Classes for Better Mobile Experience ===== */
+
+/* Ensure text is always readable */
+.hero-title, .hero-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Smooth transitions for background position changes */
+/* Smooth transitions */
 .hero-section {
-    transition: background-position 0.3s ease;
+    transition: background-position 0.3s ease, padding 0.3s ease;
+}
+
+/* Fallback background color while loading */
+.hero-section {
+    background-color: #000;
+}
+
+/* Ensure content is always centered */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Button adjustments for all devices */
+.hero-buttons .btn {
+    margin: 5px;
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .hero-buttons .btn {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+        width: auto;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero-buttons .btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
 }
 
 
