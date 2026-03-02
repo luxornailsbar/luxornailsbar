@@ -240,6 +240,7 @@ div {
 }*/
 
 .hero-section {
+    position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
     color: var(--white-text);
     padding: 150px 0;
@@ -249,7 +250,7 @@ div {
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
+    overflow: hidden;
 }
 
 .hero-section::before {
@@ -260,40 +261,44 @@ div {
     right: 0;
     bottom: 0;
     background-image: url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428');
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.3; /* Adjust opacity if needed */
     z-index: 0;
 }
 
-.hero-section .container {
-    position: relative;
-    z-index: 1;
-}
-
-/* Mobile responsive adjustments */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 120px 0;
-        min-height: 70vh;
-    }
-    
     .hero-section::before {
-        background-position: 30% center;
+        background-position: 30% center; /* Adjust this value to focus on the most important part of the image */
+        background-size: cover;
     }
 }
 
 @media (max-width: 576px) {
-    .hero-section {
-        padding: 100px 0;
-        min-height: 60vh;
-    }
-    
     .hero-section::before {
-        background-position: 35% center;
+        background-position: 25% center; /* Fine-tune for smaller screens */
+        background-size: cover;
     }
 }
+
+/* For very small screens */
+@media (max-width: 375px) {
+    .hero-section::before {
+        background-position: 20% center; /* Adjust as needed */
+        background-size: cover;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 .hero-title {
     font-size: 3.5rem;
