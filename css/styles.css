@@ -242,6 +242,9 @@ div {
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                 url('../images/hero-background.png') center/cover no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: var(--white-text);
     padding: 150px 0;
     margin-top: -76px;
@@ -254,30 +257,107 @@ div {
     position: relative;
 }
 
-/* Mobile adjustments */
+/* Tablet Optimization (768px - 992px) */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 130px 0;
+        min-height: 80vh;
+        background-position: 30% center; /* Adjusts for tablet view */
+    }
+}
+
+/* Mobile Landscape & Small Tablets (576px - 768px) */
 @media (max-width: 768px) {
     .hero-section {
         padding: 120px 0;
-        min-height: 70vh;
-        background-position: 30% center;
+        min-height: 75vh;
+        background-position: 25% center; /* Focuses on the left/center part of the image */
+        background-size: cover;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-text {
+        font-size: 1.2rem;
+        padding: 0 20px;
     }
 }
 
+/* Mobile Portrait (576px and below) */
 @media (max-width: 576px) {
     .hero-section {
         padding: 100px 0;
-        min-height: 60vh;
-        background-position: 35% center;
+        min-height: 70vh;
+        background-position: 20% center; /* Adjusts for the tall 2048x1536 image */
+        background-size: cover;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+        padding: 0 15px;
+        line-height: 1.6;
     }
 }
 
-/* For very small screens */
+/* Small Mobile Devices (375px and below) */
 @media (max-width: 375px) {
     .hero-section {
         padding: 80px 0;
-        min-height: 50vh;
-        background-position: 40% center;
+        min-height: 60vh;
+        background-position: 15% center; /* Further adjustment for very small screens */
+        background-size: cover;
     }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
+
+/* For devices in landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding: 60px 0;
+        min-height: 100vh;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* High-resolution screens (Retina displays) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-section {
+        /* Your 2048x1536 image is already high-res, so it will look great */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                         url('../images/hero-background.png');
+    }
+}
+
+/* Performance optimization - ensure image loads efficiently */
+.hero-section {
+    background-color: #000; /* Fallback color while image loads */
+}
+
+/* Smooth transitions for background position changes */
+.hero-section {
+    transition: background-position 0.3s ease;
 }
 
 
