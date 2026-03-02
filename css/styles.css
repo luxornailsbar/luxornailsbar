@@ -241,7 +241,7 @@ div {
 
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428') center/cover no-repeat;
+                url('../images/hero-background.png') center/cover no-repeat;
     color: var(--white-text);
     padding: 150px 0;
     margin-top: -76px;
@@ -250,6 +250,8 @@ div {
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: 100%;
+    position: relative;
 }
 
 /* Mobile adjustments */
@@ -266,6 +268,15 @@ div {
         padding: 100px 0;
         min-height: 60vh;
         background-position: 35% center;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 375px) {
+    .hero-section {
+        padding: 80px 0;
+        min-height: 50vh;
+        background-position: 40% center;
     }
 }
 
