@@ -240,8 +240,8 @@ div {
 }*/
 
 .hero-section {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428') center/cover no-repeat;
     color: var(--white-text);
     padding: 150px 0;
     margin-top: -76px;
@@ -250,43 +250,22 @@ div {
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 0;
-}
-
-/* Mobile-specific adjustments */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .hero-section::before {
-        background-position: 30% center; /* Adjust this value to focus on the most important part of the image */
-        background-size: cover;
+    .hero-section {
+        padding: 120px 0;
+        min-height: 70vh;
+        background-position: 30% center;
     }
 }
 
 @media (max-width: 576px) {
-    .hero-section::before {
-        background-position: 25% center; /* Fine-tune for smaller screens */
-        background-size: cover;
-    }
-}
-
-/* For very small screens */
-@media (max-width: 375px) {
-    .hero-section::before {
-        background-position: 20% center; /* Adjust as needed */
-        background-size: cover;
+    .hero-section {
+        padding: 100px 0;
+        min-height: 60vh;
+        background-position: 35% center;
     }
 }
 
