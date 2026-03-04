@@ -229,81 +229,16 @@ div {
     color: var(--black-color) !important;
 }
 
-/* Hero Section 
+/* Hero Section */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-    url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428') no-repeat center center;
+        url('https://scontent-sin2-2.xx.fbcdn.net/v/t39.30808-6/476638087_645179144726433_3162116858975849283_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=n7N72ms_gzgQ7kNvwEFGw5P&_nc_oc=AdmWfBwkexwd5io7ZMFDH07ivjt6qGqC6V4G0qazQNWrSAYRpeMphowCD3iuQOmZKRePyei1AM0Ea3ZNfuaqyCIO&_nc_zt=23&_nc_ht=scontent-sin2-2.xx&_nc_gid=8QOTWfRBd6wdcVAzlcEoYw&oh=00_Aft3cFRfbKjDt2BQaGfwWCTfYm-m16yGwkiBfbo7C42rmg&oe=6987D428') no-repeat center center;
     background-size: cover;
     color: var(--white-text);
     padding: 150px 0;
     margin-top: -76px;
-}*/
-
-.hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
-    background-image: url('../images/hero-background.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; /* Default for desktop */
-    color: var(--white-text);
-    padding: 150px 0;
-    margin-top: -76px;
-    min-height: 87vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
+    /* Offset navbar height */
 }
-
-/* For iPads and tablets - use contain to show more of the image */
-@media (max-width: 768px) {
-    .hero-section {
-        background-size: contain; /* This prevents zooming and shows full image */
-        background-position: center;
-        background-color: #000; /* Black background for empty spaces */
-        min-height: 70vh;
-        padding: 120px 0;
-    }
-}
-
-/* For mobile phones - also use contain */
-@media (max-width: 576px) {
-    .hero-section {
-        background-size: contain; /* Shows the entire 2048x1536 image without cropping */
-        background-position: center;
-        min-height: 60vh;
-        padding: 100px 0;
-    }
-}
-
-/* Alternative: Use cover but with higher percentage to show more */
-@media (max-width: 576px) {
-    .hero-section {
-        background-size: cover;
-        background-position: 50% center; /* Center shows more of the image */
-        min-height: 60vh;
-        padding: 100px 0;
-    }
-}
-
-/* Alternative 2: Use auto 100% to fit width while maintaining aspect ratio */
-@media (max-width: 576px) {
-    .hero-section {
-        background-size: 100% auto; /* Width 100%, height auto */
-        background-position: center;
-        background-color: #000;
-        min-height: auto; /* Let height be determined by content */
-        padding: 80px 0;
-    }
-}
-
-
-
-
-
-
-
 
 .hero-title {
     font-size: 3.5rem;

@@ -1116,38 +1116,38 @@
             });
         });
 
-//        (function () {
-//            'use strict';
-//
-//            document.addEventListener('contextmenu', function (e) {
-//                e.preventDefault();
-//                return false;
-//            });
-//
-//            document.addEventListener('keydown', function (e) {
-//                if (e.keyCode === 123 ||
-//                    (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) ||
-//                    (e.ctrlKey && e.keyCode === 85) ||
-//                    (e.metaKey && e.altKey && [73, 74, 67].includes(e.keyCode))) {
-//                    e.preventDefault();
-//                    return false;
-//                }
-//            });
-//
-//            const devtoolsChecker = setInterval(function () {
-//                const widthThreshold = window.outerWidth - window.innerWidth > 160;
-//                const heightThreshold = window.outerHeight - window.innerHeight > 160;
-//                if (widthThreshold || heightThreshold) {
-//                    // DevTools detected - optional action
-//                }
-//            }, 1000);
-//
-//            setInterval(function () {
-//                console.clear();
-//            }, 2000);
-//
-//            console.log = console.warn = console.error = console.info = console.debug = function () { };
-//        })();
+        (function () {
+            'use strict';
+
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode === 123 ||
+                    (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) ||
+                    (e.ctrlKey && e.keyCode === 85) ||
+                    (e.metaKey && e.altKey && [73, 74, 67].includes(e.keyCode))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            const devtoolsChecker = setInterval(function () {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+                if (widthThreshold || heightThreshold) {
+                    // DevTools detected - optional action
+                }
+            }, 1000);
+
+            setInterval(function () {
+                console.clear();
+            }, 2000);
+
+            console.log = console.warn = console.error = console.info = console.debug = function () { };
+        })();
     </script>
     <script src="scripts/cursor.js"></script>
     <script src="scripts/notification.js"></script>
